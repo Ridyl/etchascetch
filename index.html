@@ -7,7 +7,19 @@
     <link rel="stylesheet" href="style.css">
     <script src="script.js" defer></script>
 </head>
-<body>
+<body onload="draw(16)">
+    <div class="ui">
+        <input id="user-input" type="number" min="1" max="100">
+        <button class="draw-grid">
+            Draw Grid
+        </button>
+        <div class="checkboxes">
+            <input id="color" type="checkbox">
+            <label for="color">Random Colors</label>
+            <input id="darken" type="checkbox">
+            <label for="darken">Grayscale</label>
+        </div>
+    </div>
     <div class="grid-container">
 
     </div>

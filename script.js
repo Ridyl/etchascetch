@@ -1,7 +1,12 @@
 const gridContainer = document.querySelector('.grid-container');
+const uiContainer = document.querySelector('.ui');
+const userInput = document.querySelector('#user-input');
+const drawGridButton = document.querySelector('.draw-grid');
 
-//Future change to user input size up to 100
-let amount = 64;
+drawGridButton.addEventListener('click', (e) => {
+    clear();
+    draw(userInput.value);
+});
 
 //Draws Table of defined "amount" == size
 function draw(amount) {
@@ -11,6 +16,7 @@ function draw(amount) {
         const gridSpace = document.createElement('div');
         gridSpace.style.cssText = "margin: 0; display: flex; flex-direction: column; flex: 1 1 auto";
         gridSpace.setAttribute('id', 'columnSelector');
+        
         //event listener currently just checking for clicked children of created column divs and avoiding 
         gridSpace.addEventListener('click', (event) => {
             let target = event.target;
@@ -18,6 +24,7 @@ function draw(amount) {
                 target.style.backgroundColor = 'black';
             }
         });
+
         //Nested for loop is adding specified amount of grid boxes to each column and setting ID
         for (let j = 0; j < amount; j++) {
             const gridBox = document.createElement('div');
@@ -31,10 +38,12 @@ function draw(amount) {
     gridContainer.appendChild(fragment);
 }
 
-
-
-
-draw(amount);
+//Clears the board by removing all children of grid container. Only called after button draw grid is clicked
+function clear() {
+    while(gridContainer.firstChild) {
+        gridContainer.removeChild(gridContainer.firstChild);
+    }
+}
 
 
 
