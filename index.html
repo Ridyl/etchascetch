@@ -9,15 +9,28 @@
 </head>
 <body onload="draw(16)">
     <div class="ui">
-        <input id="user-input" type="number" min="1" max="100">
-        <button class="draw-grid">
-            Draw Grid
-        </button>
+        <input id="user-input" type="number" min="1" max="100" value="16">
+        <div class="button-container">
+            <button class="draw-grid">
+                Draw Grid
+            </button>
+            <button class="clear">
+                Clear
+            </button>
+        </div>
         <div class="checkboxes">
-            <input id="color" type="checkbox">
-            <label for="color">Random Colors</label>
-            <input id="darken" type="checkbox">
-            <label for="darken">Grayscale</label>
+            <div>
+                <input id="default" type="radio" name="selections" value="default" checked>
+                <label for="default">Default</label>
+            </div>
+            <div>
+                <input id="color" type="radio" name="selections" value="color">
+                <label for="color">Random Colors</label>
+            </div>
+            <div>
+                <input id="darken" type="radio" name="selections" value="darken">
+                <label for="darken">Grayscale</label>
+            </div>
         </div>
     </div>
     <div class="grid-container">
