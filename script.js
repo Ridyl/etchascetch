@@ -7,6 +7,7 @@ const black = document.getElementById('default');
 
 let colorSelection = 'black';
 
+
 //Adding an event listener for all radio buttons and passing value of selcted
 document.addEventListener('input', (f) => {
     if (f.target.getAttribute('name') == 'selections')
@@ -37,7 +38,7 @@ function draw(amount) {
         gridSpace.setAttribute('id', 'columnSelector');
         
         //event listener currently just checking for clicked children of created column divs and avoiding 
-        gridSpace.addEventListener('click', (event) => {
+        gridSpace.addEventListener('mouseover', (event) => {
             let target = event.target;
             if(target.id !== 'columnSelector') {
                 filler(target);
@@ -57,6 +58,7 @@ function draw(amount) {
     gridContainer.appendChild(fragment);
 }
 
+
 //When called, checks for selected color input then draws with selection.
 function filler(box) {
     if (colorSelection == 'black') {
@@ -67,8 +69,10 @@ function filler(box) {
         box.style.backgroundColor = color;
     }
     if (colorSelection == 'darken') {
-        let scale = grayScale();
-        box.style.backgroundColor = scale;
+        let currentColor = box.style.backgroundColor;
+        let darkness = grayScale(currentColor);
+
+        box.style.backgroundColor = darkness;
     }
 }
 
@@ -82,8 +86,18 @@ function random() {
     return final;
 }
 
-function grayScale() {
-    if ()
+//Passed current color value and is checked on array, returns next array index.
+function grayScale(currentColor) {
+    const scaleArray = ['rgb(230, 230, 230)', 'rgb(204, 204, 204)', 'rgb(179, 179, 179)', 'rgb(153, 153, 153)',
+                        'rgb(128, 128, 128)', 'rgb(102, 102, 102)', 'rgb(77, 77, 77)', 'rgb(51, 51, 51)', 
+                        'rgb(26, 26, 26)', 'rgb(0, 0, 0)'];
+
+    let checked = scaleArray.findIndex(check);
+
+    function check(arrColor) {
+        return currentColor == arrColor;
+    }
+        return scaleArray[checked + 1];
 }
 
 //Clears the board by removing all children of grid container. Only called after button draw grid is clicked
